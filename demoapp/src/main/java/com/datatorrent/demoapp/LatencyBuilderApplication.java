@@ -9,7 +9,7 @@ import com.datatorrent.api.DAG;
 import com.datatorrent.api.StreamingApplication;
 import com.datatorrent.api.annotation.ApplicationAnnotation;
 
-@ApplicationAnnotation(name = "LatencyBuilder")
+@ApplicationAnnotation(name = "LatencyBuilderApplication")
 public class LatencyBuilderApplication implements StreamingApplication
 {
 
@@ -17,7 +17,6 @@ public class LatencyBuilderApplication implements StreamingApplication
   public void populateDAG(DAG dag, Configuration conf)
   {
     RandomNumberGenerator randomGenerator = dag.addOperator("randomGenerator", RandomNumberGenerator.class);
-    randomGenerator.setNumTuples(1000);
 
     NumberCounter counter = dag.addOperator("counter", NumberCounter.class);
     counter.setGenerateLatency(true);

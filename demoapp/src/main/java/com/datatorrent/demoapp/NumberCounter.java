@@ -22,19 +22,14 @@ public class NumberCounter extends BaseOperator
     {
       if (blockOperator && windowId > failureWindowCount) {
         while (true) {
-          LOG.info("blocking operator.");
+          LOG.debug("blocking operator.");
         }
       }
       sum += number;
 
       if (generateLatency) {
-        LOG.info("Adding number: " + number + " to sum: " + sum);
-        LOG.info("After addition sum: " + sum);
-        try {
-          Thread.sleep(100);
-        } catch (InterruptedException e) {
-          e.printStackTrace();
-        }
+        LOG.debug("Adding number: " + number + " to sum: " + sum);
+        LOG.debug("After addition sum: " + sum);
       }
     }
   };
@@ -50,7 +45,7 @@ public class NumberCounter extends BaseOperator
   public void endWindow()
   {
     if (generateLatency) {
-      LOG.info("In end window.");
+      LOG.debug("In end window.");
     }
   }
 

@@ -12,9 +12,9 @@ import com.datatorrent.common.util.BaseOperator;
  */
 public class RandomNumberGenerator extends BaseOperator implements InputOperator
 {
-  private int numTuples = 100;
+  private int numTuples = Integer.MAX_VALUE;
   private transient int count = 0;
-  private boolean failApplication = false;
+  private boolean failOperator = false;
   private long failureWindowCount = 100;
   private transient long windowId = 0;
 
@@ -33,7 +33,7 @@ public class RandomNumberGenerator extends BaseOperator implements InputOperator
     if (count++ < numTuples) {
       out.emit(Math.random());
     }
-    if (failApplication && windowId == failureWindowCount) {
+    if (failOperator && windowId == failureWindowCount) {
       int res = count / 0;
     }
   }
@@ -54,14 +54,14 @@ public class RandomNumberGenerator extends BaseOperator implements InputOperator
     this.numTuples = numTuples;
   }
 
-  public boolean getFailApplication()
+  public boolean getFailOperator()
   {
-    return failApplication;
+    return failOperator;
   }
 
-  public void setFailApplication(boolean failApplication)
+  public void setFailOperator(boolean failOperator)
   {
-    this.failApplication = failApplication;
+    this.failOperator = failOperator;
   }
 
   public long getFailureWindowCount()
