@@ -13,7 +13,7 @@ public class FailingOperatorApplication implements StreamingApplication
   public void populateDAG(DAG dag, Configuration conf)
   {
     RandomNumberGenerator randomGenerator = dag.addOperator("randomGenerator", RandomNumberGenerator.class);
-    randomGenerator.setNumTuples(500);
+    randomGenerator.setNumTuples(10000);
     randomGenerator.setFailOperator(true);
 
     NumberCounter counter = dag.addOperator("counter", NumberCounter.class);

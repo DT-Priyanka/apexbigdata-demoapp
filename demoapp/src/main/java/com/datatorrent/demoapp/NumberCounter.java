@@ -27,9 +27,8 @@ public class NumberCounter extends BaseOperator
       }
       sum += number;
 
-      if (generateLatency) {
+      if (generateLatency && LOG.isDebugEnabled()) {
         LOG.debug("Adding number: " + number + " to sum: " + sum);
-        LOG.debug("After addition sum: " + sum);
       }
     }
   };
